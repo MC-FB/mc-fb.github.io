@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uni-Net</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!--
+https://generativeai.pub/gpt-o1-system-prompt-hack-reveals-jennifer-78458d3e692e
+https://medium.com/sciforce/step-by-step-guide-to-your-own-large-language-model-2b3fed6422d0
+https://www.hkubs.hku.hk/research/thought-leadership/hkej-column/combat-misinformation-for-a-stable-economy/
+https://pub.towardsai.net/build-your-own-llama-3-architecture-from-scratch-using-pytorch-2ce1ecaa901c
+https://medium.com/the-generator/how-many-r-s-in-strawberry-how-to-get-more-accurate-responses-from-chatgpt-8f796a52eee6
+https://levelup.gitconnected.com/vector-embeddings-explained-for-developers-6bd9800d3635
+https://medium.com/@tenyks_blogger/zero-shot-ai-the-end-of-fine-tuning-as-we-know-it-1e9f0215967e
+https://abhinand05.medium.com/self-hosting-llama-3-1-70b-or-any-70b-llm-affordably-2bd323d72f8d
+https://medium.com/macoclock/this-swedish-company-might-be-the-next-apple-dcb5d94a2e48
+https://medium.com/predict/byd-just-buried-tesla-d3780d2baa5e
+https://ai.gopubby.com/i-trained-a-2d-game-animation-generation-model-to-create-complex-cool-game-actions-fully-cf749a72c473
+https://ai.plainenglish.io/im-sick-and-tired-of-prompt-engineering-so-i-m-making-a-prompt-optimizer-part-2-9ff3aa47641d
+https://blog.stackademic.com/storm-stanfords-revolutionary-research-tool-harnessing-the-power-of-agents-and-agentic-workflows-a2fa0e1a7fe3
+https://ai.plainenglish.io/grok-2-why-its-huge-for-ai-43c18a75c19a
+https://medium.com/google-cloud/cloud-run-gpu-make-your-llms-serverless-5188caacc667
+https://b4rtaz.medium.com/how-to-run-llama-3-405b-on-home-devices-build-ai-cluster-ad0d5ad3473b
+https://transformer-circuits.pub/2022/toy_model/index.html
+https://transformer-circuits.pub/2023/monosemantic-features
+
+https://laidlawscholars.network/posts/research-summary-dissecting-how-tubulin-code-controls-microtubule-properties
+https://laidlawscholars.network/documents/poster-augmented-reality-user-interface
+https://laidlawscholars.network/documents/report-virtual-reality-user-interface
+https://laidlawscholars.network/documents/research-poster-molding-of-3d-micro-nano-scale-glass-structures-with-pdms?utm_source=digest_mailer&utm_medium=email&utm_campaign=daily_digest
+https://laidlawscholars.network/documents/research-poster-bacterial-detection-using-raman-spectroscopy?utm_source=digest_mailer&utm_medium=email&utm_campaign=daily_digest
+https://laidlawscholars.network/documents/research-project-the-impact-of-colour-and-olfactory-features-of-artificial-flowers-on-their-attraction-to-bumble-bees?utm_source=digest_mailer&utm_medium=email&utm_campaign=daily_digest
+https://laidlawscholars.network/posts/scholar-spotlight-oliver-pugh?utm_source=digest_mailer&utm_medium=email&utm_campaign=daily_digest
+https://laidlawscholars.network/users/jack-mcnealy?utm_source=user_mailer&utm_medium=email&utm_campaign=send_follow_notification
+https://laidlawscholars.network/users/amelia-hui
+https://laidlawscholars.network/posts/lia-showcase-reflection-a-journey-of-learning-leadership-and-community?utm_source=digest_mailer&utm_medium=email&utm_campaign=daily_digest
+https://laidlawscholars.network/documents/report-how-environmental-factors-affect-sleep-patterns-in-the-adolescent-bayaka-population?utm_source=user_mailer&utm_medium=email&utm_campaign=send_publish_notification_to_follower
+https://laidlawscholars.network/posts/scholar-spotlight-phiona-brenda-umwali?utm_source=digest_mailer&utm_medium=email&utm_campaign=daily_digest
+https://laidlawscholars.network/documents/research-essay-exploring-the-effectiveness-of-graph-neural-networks-in-predicting-candidate-drugs-and-protein-ligand-binding?utm_source=user_mailer&utm_medium=email&utm_campaign=send_publish_notification_to_follower
+https://laidlawscholars.network/documents/research-poster-exploring-the-effectiveness-of-graph-neural-networks-in-predicting-candidate-drugs?utm_source=user_mailer&utm_medium=email&utm_campaign=send_publish_notification_to_follower
+
+
+-->
+
+<script>
+var bulk = true; // false = indivdual, true = bulk
+var type = document.getElementsByTagName("th");
+var cols = document.getElementsByTagName("td");	 
+var linkinfo = [["Daily Info",
+				["https://outlook.office.com/calendar/view/week","Outlook Calendar"],
+				["https://outlook.office.com/mail/", "Outlook"],
+				["https://mail.google.com/mail/u/0/#inbox","Personal Email"],
+				["https://sis-eportal.hku.hk/psp/ptlprod/EMPLOYEE/EMPL/h/?tab=DEFAULT","HKU Portal"],
+				["https://web.whatsapp.com/","WW"],
+				["https://www.scmp.com/hk","SCMP"],
+				],
+				
+				
+				["Laidlaw Research",
+				["https://laidlawscholars.network/", "Laidlaw"],
+				["https://docs.google.com/document/d/132YA-XgWo4908hi9sQyhUeeGHE7xLwakd2s-Mwl1tHI/edit?authuser=2","Doc"],
+				["https://docs.google.com/presentation/d/1gwESFQxawaumeE2Pwy4b7v6qBOev9uh8GJzl0XACZVI/edit#slide=id.g2723acaff57_0_0","Slides"],
+				["file:///B:/Marco's%20Stuff/HKU%20Stuff/Laidlaw/Conference%20Email.pdf","Conference Email"],
+				["https://pytorch.org/tutorials/","PyTorch"],
+				["https://pytorch.org/tutorials/","PyTorch"],
+				["https://colab.research.google.com/?authuser=2&hl=en","Colab"],
+				["file:///B://Marco's%20Stuff/HKU%20Stuff/Laidlaw/Papers%20and%20resources/","Papers"],
+				["https://www.autodl.com/console/homepage/personal","AutoDL"],
+				["https://www.autodl.com/docs/vscode/","AutoDL VSCode"],
+				["https://www.autodl.com/docs/filezilla/","AutoDL FileZilla"],
+				["https://www.autodl.com/docs/network_turbo/","AutoDL FQ"],
+				["https://blog.csdn.net/codelady_g/article/details/136761330","AutoDL FQ2"],
+				["https://github.com/explainingai-code/StableDiffusion-PyTorch?tab=readme-ov-file","SD Github Learn"],
+				["https://svante.mit.edu/use_slurm.html#further-slurm-script-examples","MIT Slurm"],
+				["https://hpc.nmsu.edu/onboarding/supercomputing/slurm/workflow/", "SLURM 2"],
+				["https://huggingface.co/docs/diffusers/api/models/unet2d-cond","HF Unet model"],
+				["https://huggingface.co/docs/diffusers/api/models/dit_transformer2d","HF DiT"],
+				["https://huggingface.co/docs/diffusers/v0.6.0/en/using-diffusers/custom_pipelines","HF custom pipe"],
+				["https://github.com/PixArt-alpha/PixArt-alpha/blob/master/requirements.txt","PixArt preq"],
+				["https://support.ceci-hpc.be/doc/_contents/QuickStart/SubmittingJobs/SlurmTutorial.html","SLURM basic info 1"],
+				["https://slurm.schedmd.com/quickstart.html","SLURM basic info 2"],
+				["https://blog.paperspace.com/pixart-alpha/","pixart principle"],
+				["https://blog.csdn.net/weixin_68531269/article/details/135747460","AutoDLocal1"],
+				["https://ask.csdn.net/questions/8071130","AutoDLocal2"],
+				["https://zhuanlan.zhihu.com/p/693049610","AutoDLocal3"],
+				["https://discuss.huggingface.co/t/using-huggingface-on-no-free-internet-access-server/11202/4","HF Local"],
+				["https://www.diffchecker.com/Uzls725G/","CustPipe Diff"],
+				["https://gmongaras.medium.com/how-do-self-attention-masks-work-72ed9382510f","SelfAttention"],
+				["https://github.com/huggingface/diffusers/blob/v0.29.2/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py","SD3 Pipe"],
+				["https://github.com/huggingface/diffusers/blob/v0.29.2/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py","SD Pipe"],
+				],
+				
+				
+				["Learning",
+				["https://leetcode.com/explore/", "Leetcode"],
+				["https://www.duolingo.com/learn", "Duolingo"],
+				["https://r.huaweistatic.com/s/hwtalent/lst/learning/#/home", "Huawei"],
+				["https://edu.alibabacloud.com/student/central","AliCloud"],
+				["https://open.163.com/","NetEase Lesson"],
+				["https://olympus.mygreatlearning.com/courses", "MIT Data"],
+				["https://www.cedars.hku.hk/cope/pe/MHworkbooks", "Men. Heal. WB"],
+				["https://learning.hku.hk/catalog/","HKU Learning"],
+				],
+				["Opportunities<br>(Talks & Money)",
+				["https://aas.hku.hk/apply-scholarships/", "AASO Scholarships"],
+				["https://datascience.hku.hk/", "IDS"],
+				["https://ai-humanity.net/events-2/", "AI & Humanity Lab"],
+				["https://scholar.aas.hku.hk/?action=showonesscheme&ss_id=766&backb=1","Tung & Ngai"],
+				],
+				
+				
+				["Reading & Papers",
+				["https://arxiv.org/abs/1612.03144","Paper on Matching"],
+				["https://arxiv.org/abs/2203.02378","DiT Arxiv"],
+				["https://huggingface.co/docs/transformers/model_doc/dit","DiT HF"],
+				["https://www.google.com/search?q=dual+U+net+for+semantic+matching&oq=dual+U+net+for+semantic+matching&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDgwNjVqMGoxqAIAsAIA&sourceid=chrome&ie=UTF-8","Dual U Net"],
+				["https://arxiv.org/abs/2401.05252","PIXART-δ"],
+				["https://arxiv.org/abs/2406.08394","VisionLLM v2"],
+				["https://arxiv.org/abs/2402.14623","RoboScript"],
+				["https://arxiv.org/abs/2406.07547","MimicBrush"],
+				["https://arxiv.org/abs/2307.09481","AnyDoor"],
+				["https://ai.meta.com/blog/meta-llama-3/","Llama 3"],
+				["https://tongyi.aliyun.com/qianwen/document","通義千問"],
+				["https://www.google.com/search?q=backpropagation+in+CNN&oq=backpropagation+in+CNN&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDYxMTJqMGoxqAIAsAIA&sourceid=chrome&ie=UTF-8","CNN Backprop"],
+				["https://arxiv.org/pdf/1609.07009","CNN Paper1"],
+				["https://arxiv.org/pdf/1603.07285","CNN Paper2"],
+				["https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf","Image Recog"],
+				["https://arxiv.org/pdf/2103.00020","Paper1"],
+				["DRAW: A Recurrent Neural Network For Image Generation","DRAW RNN"],
+				["https://arxiv.org/pdf/2305.14334","SD Semantics"],
+				["https://arxiv.org/pdf/2112.10752","SD3"],
+				
+				],
+				["Misc. Content",
+				["https://timeauction.org/en/projects", "Time Auction"],
+				["https://bulletin.hku.hk/", "HKU Bulletin"],
+				["https://vatc.cs.hku.hk/", "Virtual Asset"],
+				["https://www.hkcec.com/en/event-calendar","HKCEC"],
+				["https://blog-sc.hku.hk/","UL Res Connect"],
+				["https://www.ailawprogram.org/","HKU AI&Law"],
+				["https://www.cs.hku.hk/seminars-events","HKU CS Talks"],
+				["https://platform.sensenova.cn/doc?path=/model/llm/GeneralLLM.md","商湯大模型"],
+				["https://sites.google.com/view/medstatbysnaiha/medstat","MedStat"],
+				["https://app.quicktakes.io/notes","Quicktakes"],
+				["https://etld.talic.hku.hk/digital-solution/","TALIC Digi Soln"],
+				["https://aied.talic.hku.hk/","AI in Edu"],
+				["https://www.ccso.hku.hk/","CCSO"],
+				],
+				
+				
+				["To Be<br>Read & Deleted",
+				["https://ai.gopubby.com/4-strategies-to-optimize-retrieval-augmented-generation-0ad902b5c3e2","Medium 1"],
+				["https://medium.com/atlas-writes/the-brain-doesnt-create-consciousness-it-constrains-it-468890721aa6","Medium 2"],
+				["https://towardsdatascience.com/cuda-for-ai-intuitively-and-exhaustively-explained-6ba6cb4406c5","Medium 3"],
+				["https://medium.com/@learn-simplified/why-entire-ai-field-is-headed-towards-ai-agents-a268ac9661ed","Medium 4"],
+				["https://levelup.gitconnected.com/billionaire-investor-warns-whats-ahead-is-worse-than-a-recession-46e43467f716","Medium 5"],
+				["","Medium 6"],
+				["","Medium 7"],
+				["","Medium 8"],
+				["","Medium 9"],
+				["","Medium 10"],
+				["https://blog.stackademic.com/google-python-team-entirely-laid-off-flutter-team-also-facing-the-axe-88173d1bbf04","Medium 11"],
+				["https://medium.com/practice-in-public/dont-use-obsidian-d0095a523092","Medium 12"],
+				["https://medium.com/@artturi-jalli/i-tried-making-money-with-an-ai-website-82d89b8f5294","Medium 13"],
+				["https://towardsdatascience.com/kolmogorov-arnold-networks-the-latest-advance-in-neural-networks-simply-explained-f083cf994a85","Medium 14"],
+				["https://generativeai.pub/chatbot-cheat-code-build-your-ai-assistant-running-a-huge-llm-without-spending-a-penny-part-fb9328080ffb","Medium 15"],
+				["https://medium.com/technological-singularity/what-is-the-value-of-y-fdde0b02c660","Medium 16"],
+				["https://medium.com/@ignacio.de.gregorio.noblejas/how-does-apple-intelligence-really-work-5f79b368c86d","Medium 17"],
+				["https://medium.com/brainscriblr/advanced-open-source-ai-llms-e6d5e01d39ad","Medium 18"],
+				["https://levelup.gitconnected.com/inside-the-leaked-system-prompts-of-gpt-4-gemini-1-5-claude-3-and-more-4ecb3d22b447","Medium 19"],
+				["https://amandaclaypool.medium.com/are-entry-level-jobs-becoming-obsolete-wall-street-say-yes-21857900f5d9","Medium 20"],
+				
+				],
+				];
+				
+				
+				//ADD a Column for AI Soc Stuff?
+				
+				
+function bulkIndivChange(){
+	for (var i=0;i<Math.min(type.length,linkinfo.length); i++){
+		type[i].innerHTML = linkinfo[i][0];
+	}
+	var s;
+	for(var i=0;i<cols.length;i++){
+		s = "";
+		for(var j=1;j<linkinfo[i].length;j++){
+			
+			if(bulk){
+				s += "<a href=\"" + linkinfo[i][j][0] + "\" target=\"_blank\">" + linkinfo[i][j][1] + "</a><br>"
+			}else{
+				s += "<label>\n<input type=\"checkbox\" class=\"webselect\" value=" + linkinfo[i][j][0] + ">" + linkinfo[i][j][1] + "\n</label><br>"
+			}
+		}
+		
+		if(bulk){
+			s += "<br>"
+		}else{
+			s = "<form id=\"websitesForm\">\n" + s + "\n </form>";
+		}
+		
+		//alert(s);
+		cols[i].innerHTML = s;
+	}
+	
+	
+	
+	//<a href="https://aas.hku.hk/apply-scholarships/" target="_blank">AASO Scholarships</a><br>
+	//<label>
+	//<input type="checkbox" class="webselect" value="https://outlook.office.com/mail/" checked="unchecked"> Outlook
+	//</label><br>
+
+	bulk = !bulk
+}
+
+function init(){
+	var checkboxes = document.getElementsByClassName("webselect");
+	document.getElementsByClassName("webselect").checked = true;
+	for (var i=0;i<checkboxes.length; i++){
+		checkboxes[i].checked = false;
+	}
+}
+
+function openWebsites() {
+	var checkboxes = document.getElementsByClassName("webselect");
+	
+		
+	for (var i=0;i<checkboxes.length; i++){
+		if(checkboxes[i].checked){
+			const url = checkboxes[i].value;
+			window.open(url);
+		}
+	}
+}
+</script>
+
+</head>
+<style>
+body {
+background-color: #FDF5E6;
+color: #000000;
+text-shadow: 1px 1px 1px #333333;
+font-size: 20px;
+}
+#banner {
+position: relative;
+z-index:0
+}
+#LHS{
+width:1500px;
+margin-left:30px;
+order:0;
+}
+#RHS{
+width:550px;
+order:1;
+}
+.linklist{
+width:20%;
+}
+
+table tr th {
+border: 2px solid black;
+padding: 5px;
+text-align:center;
+}
+td {
+border: 2px solid black;
+padding: 5px;
+text-align:left;
+vertical-align: text-top;
+}
+tr:nth-child(odd) {
+background-color: rgba(0,0,0,0.1);
+}
+tr:nth-child(even) {
+background-color: rgba(255,255,255,0.1);
+}
+
+nav {
+background-color: rgba(170,205,240, 0.7);
+color: black;
+}
+ul.dropdown-menu{
+	background-color:rgba(170,205,240,0.7)
+}
+footer {
+background-color: rgba(170,205,240, 0.7);
+color: black;
+}
+table tr th {
+border: 2px solid black;
+padding: 5px;
+}
+td {
+border: 2px solid black;
+padding: 5px;
+}
+a:link {
+color: blue;
+}
+a:visited {
+color: blue;
+}
+a:hover {
+background-color: OldLace;
+color: #000000;
+}
+a:active {
+color: white;
+}
+</style>
+<body onload="bulkIndivChange()">
+<h1>Uni-Net</h1>
+<h2 style="color:red">Remember to Add the other links in the comments of the code</h2>
+<div id="LHS">
+
+
+<div style="display:flex">
+<h2 style="width:200px">Useful Links</h2>
+<button type="button" onclick="bulkIndivChange()" style="height:35px">Bulk/Indiv</button>
+</div>
+<table class=linktable>
+<tr height= 50px>
+<th width =14%></th><th width =14%></th><th width =14%></th><th width =14%></th><th width =14%></th><th width =14%></th><th width =14%></th>
+</tr>
+
+<tr height = 50px>
+<td>
+<br>
+</td>
+
+<td>
+<br>
+</td>
+
+<td>
+<br>
+</td>
+
+<td>
+<br>
+</td>
+
+<td>
+<br>
+</td>
+
+<td>
+<br>
+</td>
+
+<td>
+<br>
+</td>
+
+</tr>
+
+</table>
+
+
+
+<div>
+<br>
+<button type="button" onclick="openWebsites()">Open Selected Websites</button>
+
+</div>
+</div>
+
+
+<div id="RHS">
+
+</div>
+
+<h1><a href="./LinkStash.html" target="_blank">Stash of stuff to be read</a></h1>
+
+
+</div>
+
+</body>
+</html>
+
