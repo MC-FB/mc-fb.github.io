@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website Style Comparison</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 2.5rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .style-card {
+            background: white;
+            border-radius: 12px;
+            padding: 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .style-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .card-content p {
+            margin-bottom: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .demo-section {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.02);
+        }
+
+        .demo-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .demo-nav a {
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Tech-Forward with Warmth */
+        .tech-warm .card-header { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+        .tech-warm h3 { color: #1a1a2e; }
+        .tech-warm .demo-nav a { 
+            background: #1a1a2e; 
+            color: white; 
+        }
+        .tech-warm .demo-nav a:hover { 
+            background: #00d4ff; 
+            transform: scale(1.05);
+        }
+
+        /* Playful Professional */
+        .playful-pro .card-header { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+        .playful-pro h3 { color: #6c5ce7; }
+        .playful-pro .demo-nav a { 
+            background: #6c5ce7; 
+            color: white; 
+        }
+        .playful-pro .demo-nav a:hover { 
+            background: #fdcb6e; 
+            color: #2d3436;
+            transform: rotate(-2deg);
+        }
+
+        /* Modern Minimalist */
+        .modern-minimal .card-header { background: linear-gradient(135deg, #2d3436, #636e72); }
+        .modern-minimal h3 { color: #2d3436; }
+        .modern-minimal .demo-nav a { 
+            background: #2d3436; 
+            color: white; 
+        }
+        .modern-minimal .demo-nav a:hover { 
+            background: #e84393; 
+            transform: translateY(-2px);
+        }
+
+        /* Geometric Clean */
+        .geometric .card-header { background: linear-gradient(45deg, #0984e3, #74b9ff); }
+        .geometric h3 { color: #0984e3; }
+        .geometric .demo-section {
+            background: linear-gradient(45deg, rgba(9, 132, 227, 0.1), rgba(116, 185, 255, 0.1));
+            position: relative;
+            overflow: hidden;
+        }
+        .geometric .demo-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+            transform: rotate(45deg);
+        }
+        .geometric .demo-nav a { 
+            background: #0984e3; 
+            color: white;
+            clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+            padding: 8px 20px;
+        }
+
+        /* Tech Inspired */
+        .tech-inspired .card-header { 
+            background: #0f0f0f; 
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        .tech-inspired .card-header::after {
+            content: '_';
+            animation: blink 1s infinite;
+        }
+        .tech-inspired h3 { 
+            color: #0f0f0f; 
+            font-family: 'Courier New', monospace;
+        }
+        .tech-inspired .demo-section {
+            background: #0f0f0f;
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+        }
+        .tech-inspired .demo-nav a { 
+            background: #0f0f0f; 
+            color: #00ff41;
+            border: 1px solid #00ff41;
+            font-family: 'Courier New', monospace;
+        }
+        .tech-inspired .demo-nav a:hover { 
+            background: #00ff41; 
+            color: #0f0f0f;
+            box-shadow: 0 0 10px #00ff41;
+        }
+
+        /* Playful Minimalism */
+        .playful-minimal .card-header { background: linear-gradient(135deg, #ffffff, #f1f2f6); color: #2f3542; }
+        .playful-minimal h3 { color: #2f3542; }
+        .playful-minimal .demo-nav a { 
+            background: white; 
+            color: #2f3542;
+            border: 2px solid #2f3542;
+        }
+        .playful-minimal .demo-nav a:hover { 
+            background: #ff6348; 
+            color: white;
+            border-color: #ff6348;
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+
+        .recommendation {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .recommendation h2 {
+            color: #6c5ce7;
+            margin-bottom: 20px;
+        }
+
+        .recommendation p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-nav {
+                flex-wrap: wrap;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-palette"></i> Personal Website Style Comparison</h1>
+        
+        <div class="comparison-grid">
+            <!-- Tech-Forward with Warmth -->
+            <div class="style-card tech-warm">
+                <div class="card-header">
+                    <i class="fas fa-microchip"></i> Tech-Forward with Warmth
+                </div>
+                <div class="card-content">
+                    <h3>Professional Yet Approachable</h3>
+                    <p>Combines the analytical nature of AI with human warmth. Deep navy suggests expertise while bright accents show innovation and coral adds approachability.</p>
+                    
+                    <div class="demo-section">
+                        <div class="demo-nav">
+                            <a href="#"><i class="fas fa-home"></i> Home</a>
+                            <a href="#"><i class="fas fa-user"></i> About</a>
+                            <a href="#"><i class="fas fa-project-diagram"></i> Projects</a>
+                            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                        </div>
+                        <p style="color: #1a1a2e;">Perfect for showing serious AI expertise while remaining personable and approachable.</p>
+                    </div>
+                    
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #1a1a2e;">#1a1a2e</div>
+                        <div class="color-swatch" style="background: #00d4ff;">#00d4ff</div>
+                        <div class="color-swatch" style="background: #ff6b6b;">#ff6b6b</div>
+                        <div class="color-swatch" style="background: #ffa726;">#ffa726</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Playful Professional -->
+            <div class="style-card playful-pro">
+                <div class="card-header">
+                    <i class="fas fa-rocket"></i> Playful Professional
+                </div>
+                <div class="card-content">
+                    <h3>Creative & Energetic</h3>
+                    <p>Purple represents creativity and innovation, yellow adds competitive energy, while mint provides balance. Shows you're creative and thoughtful.</p>
+                    
+                    <div class="demo-section">
+                        <div class="demo-nav">
+                            <a href="#"><i class="fas fa-home"></i> Home</a>
+                            <a href="#"><i class="fas fa-user"></i> About</a>
+                            <a href="#"><i class="fas fa-project-diagram"></i> Projects</a>
+                            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                        </div>
+                        <p style="color: #6c5ce7;">Ideal for showcasing both competitive spirit and creative problem-solving in AI.</p>
+                    </div>
+                    
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #6c5ce7;">#6c5ce7</div>
+                        <div class="color-swatch" style="background: #fdcb6e; color: #2d3436;">#fdcb6e</div>
+                        <div class="color-swatch" style="background: #00b894;">#00b894</div>
+                        <div class="color-swatch" style="background: #ffeaa7; color: #2d3436;">#ffeaa7</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modern Minimalist -->
+            <div class="style-card modern-minimal">
+                <div class="card-header">
+                    <i class="fas fa-cube"></i> Modern Minimalist
+                </div>
+                <div class="card-content">
+                    <h3>Bold & Confident</h3>
+                    <p>Clean monochrome base with a single bold accent. Shows confidence and understanding that sometimes less is more - valuable in both design and AI.</p>
+                    
+                    <div class="demo-section">
+                        <div class="demo-nav">
+                            <a href="#"><i class="fas fa-home"></i> Home</a>
+                            <a href="#"><i class="fas fa-user"></i> About</a>
+                            <a href="#"><i class="fas fa-project-diagram"></i> Projects</a>
+                            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                        </div>
+                        <p style="color: #2d3436;">Perfect for letting your content and achievements be the star of the show.</p>
+                    </div>
+                    
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #2d3436;">#2d3436</div>
+                        <div class="color-swatch" style="background: #ffffff; color: #2d3436; border: 1px solid #ddd;">White</div>
+                        <div class="color-swatch" style="background: #e84393;">#e84393</div>
+                        <div class="color-swatch" style="background: #a7e92f; color: #2d3436;">#a7e92f</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Geometric Clean -->
+            <div class="style-card geometric">
+                <div class="card-header">
+                    <i class="fas fa-shapes"></i> Geometric & Clean
+                </div>
+                <div class="card-content">
+                    <h3>Systematic & Precise</h3>
+                    <p>Reflects systematic thinking and precision. Geometric elements mirror algorithms and data structures. Clean typography ensures professional readability.</p>
+                    
+                    <div class="demo-section">
+                        <div class="demo-nav">
+                            <a href="#"><i class="fas fa-home"></i> Home</a>
+                            <a href="#"><i class="fas fa-user"></i> About</a>
+                            <a href="#"><i class="fas fa-project-diagram"></i> Projects</a>
+                            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                        </div>
+                        <p style="color: #0984e3;">Great for highlighting analytical thinking and attention to detail in AI work.</p>
+                    </div>
+                    
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #0984e3;">#0984e3</div>
+                        <div class="color-swatch" style="background: #74b9ff;">#74b9ff</div>
+                        <div class="color-swatch" style="background: #ffffff; color: #0984e3; border: 1px solid #ddd;">White</div>
+                        <div class="color-swatch" style="background: #ddd; color: #666;">#ddd</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Inspired -->
+            <div class="style-card tech-inspired">
+                <div class="card-header">
+                    <i class="fas fa-terminal"></i> Tech-Inspired
+                </div>
+                <div class="card-content">
+                    <h3>Code & Terminal Aesthetic</h3>
+                    <p>Directly connects to your CS field. Terminal aesthetics show comfort with technical environments. Monospace fonts create coding consistency.</p>
+                    
+                    <div class="demo-section">
+                        <div class="demo-nav">
+                            <a href="#">$ ./home</a>
+                            <a href="#">$ ./about</a>
+                            <a href="#">$ ./projects</a>
+                            <a href="#">$ ./contact</a>
+                        </div>
+                        <p>Perfect for showing deep technical knowledge and comfort with development environments.</p>
+                    </div>
+                    
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #0f0f0f;">#0f0f0f</div>
+                        <div class="color-swatch" style="background: #00ff41;">#00ff41</div>
+                        <div class="color-swatch" style="background: #333; color: #00ff41;">#333</div>
+                        <div class="color-swatch" style="background: #ffffff; color: #0f0f0f; border: 1px solid #ddd;">White</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Playful Minimalism -->
+            <div class="style-card playful-minimal">
+                <div class="card-header">
+                    <i class="fas fa-smile"></i> Playful Minimalism
+                </div>
+                <div class="card-content">
+                    <h3>Professional with Hidden Fun</h3>
+                    <p>Clean professional appearance that reveals personality through interaction. Easter eggs and micro-animations show your silly side while maintaining credibility.</p>
+                    
+                    <div class="demo-section">
+                        <div class="demo-nav">
+                            <a href="#"><i class="fas fa-home"></i> Home</a>
+                            <a href="#"><i class="fas fa-user"></i> About</a>
+                            <a href="#"><i class="fas fa-project-diagram"></i> Projects</a>
+                            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                        </div>
+                        <p style="color: #2f3542;">Perfect balance for your personality - professional exterior with fun personality that emerges on interaction.</p>
+                    </div>
+                    
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #ffffff; color: #2f3542; border: 1px solid #ddd;">White</div>
+                        <div class="color-swatch" style="background: #2f3542;">#2f3542</div>
+                        <div class="color-swatch" style="background: #ff6348;">#ff6348</div>
+                        <div class="color-swatch" style="background: #f1f2f6; color: #2f3542; border: 1px solid #ddd;">#f1f2f6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendation">
+            <h2><i class="fas fa-star"></i> My Recommendation</h2>
+            <p>Based on your description as an AI student who's curious, competitive, and enjoys being silly, I'd recommend <strong>Playful Minimalism</strong> or <strong>Playful Professional</strong>. These approaches give you a professional foundation that showcases your AI expertise while allowing your personality to shine through interactive elements and thoughtful color choices. The playful elements can emerge as visitors explore your site, much like how your silly side emerges once people get to know you!</p>
+        </div>
+    </div>
+</body>
+</html>
