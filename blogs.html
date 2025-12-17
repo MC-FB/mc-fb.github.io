@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs - Your Name</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-text">Your Name</span>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="places.html" class="nav-link">Places I've Visited</a></li>
+                    <li><a href="blogs.html" class="nav-link active">Blogs</a></li>
+                    <li><a href="links.html" class="nav-link">Links</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero hero--blogs">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">My Blog</h1>
+                    <p class="hero-subtitle">Thoughts, stories, and insights from my journey</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="blogs">
+            <div class="container">
+                <h2 class="section-title">Latest Posts</h2>
+                <div class="blog-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="travel">Travel</button>
+                    <button class="filter-btn" data-filter="tech">Technology</button>
+                    <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
+                </div>
+                <div class="blogs-grid">
+                    <article class="blog-post" data-category="travel">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1508804052814-cd3ba865a116?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Paris">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Travel</span>
+                                <span class="blog-date">March 15, 2024</span>
+                            </div>
+                            <h3 class="blog-title">Discovering Paris: A Weekend in the City of Light</h3>
+                            <p class="blog-excerpt">Join me as I explore the charming streets of Paris, from the iconic Eiffel Tower to hidden gems that only locals know about. This journey will take you through my favorite cafés, museums, and unexpected discoveries.</p>
+                            <a href="#blog-post" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post" data-category="tech">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Technology">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Technology</span>
+                                <span class="blog-date">February 28, 2024</span>
+                            </div>
+                            <h3 class="blog-title">The Future of Web Development: Trends to Watch in 2024</h3>
+                            <p class="blog-excerpt">As technology evolves at breakneck speed, web development continues to transform. In this post, I explore the emerging trends that are shaping the future of web development and how they might impact our digital experiences.</p>
+                            <a href="#blog-post" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post" data-category="lifestyle">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1499346030926-9a72ce38ad60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Lifestyle">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Lifestyle</span>
+                                <span class="blog-date">February 10, 2024</span>
+                            </div>
+                            <h3 class="blog-title">Finding Balance: How I Manage Work and Travel</h3>
+                            <p class="blog-excerpt">Balancing a career with a passion for travel can be challenging. In this personal reflection, I share my strategies for maintaining productivity while exploring new destinations and how digital nomadism has changed my perspective on work-life balance.</p>
+                            <a href="#blog-post" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post" data-category="travel">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Tokyo">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Travel</span>
+                                <span class="blog-date">January 20, 2024</span>
+                            </div>
+                            <h3 class="blog-title">Tokyo Through My Lens: Cultural Insights from Japan</h3>
+                            <p class="blog-excerpt">My recent trip to Tokyo was an eye-opening experience that challenged many of my preconceptions about Japanese culture. From the efficiency of public transport to the quiet respect in daily interactions, here's what I learned.</p>
+                            <a href="#blog-post" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post" data-category="tech">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="AI">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Technology</span>
+                                <span class="blog-date">January 5, 2024</span>
+                            </div>
+                            <h3 class="blog-title">AI and Creativity: Can Machines Be Truly Creative?</h3>
+                            <p class="blog-excerpt">With AI tools becoming increasingly sophisticated, the question of machine creativity has never been more relevant. I explore what creativity means, how AI challenges our understanding of it, and what this means for human creators.</p>
+                            <a href="#blog-post" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post" data-category="lifestyle">
+                        <div class="blog-image">
+                            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Photography">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Lifestyle</span>
+                                <span class="blog-date">December 15, 2023</span>
+                            </div>
+                            <h3 class="blog-title">The Art of Slow Photography in a Fast-Moving World</h3>
+                            <p class="blog-excerpt">In our age of instant gratification and rapid content consumption, I've found solace in slow photography. This post explores how taking time with each shot has improved not just my photos, but my appreciation for the world around me.</p>
+                            <a href="#blog-post" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h2 class="section-title">Subscribe to Updates</h2>
+                <p class="newsletter-subtitle">Get notified when I publish new blog posts</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

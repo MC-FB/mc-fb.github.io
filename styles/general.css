@@ -1,0 +1,213 @@
+
+html {
+  height: 100%;
+  min-width: 100%;
+}
+
+body {
+  background-color: #000000;
+  color: #6c5ce7;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  margin: 0px;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.container {
+  /* background-image: linear-gradient(90deg, #a29bfe 0%, #6c5ce7 50%, #a29bfe 100%); */
+  background-color: #ffffff;
+  width: 100%;
+  margin: auto !important;
+}
+
+ul {
+  margin: 0;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+}
+
+#title {
+  background-color: hsl(247, 65%, 52%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+#logoContainer {
+  width: 20%;
+}
+
+#titleContainer {
+  width: 70%;
+  place-items: center;
+}
+
+#socLogo {
+  width: 6rem;
+  padding: 5px;
+}
+
+.navbar {
+  background-color: hsl(247, 100%, 75%);
+  max-width: 100%;
+}
+
+.main-menu {
+  list-style: none;
+  display: flex;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-item a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: block;
+}
+
+/* Dropdown menu styling */
+ul {
+  padding: 0px;
+}
+
+.has-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #444;
+  list-style: none;
+  min-width: 150px;
+}
+
+.submenu-item a {
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.submenu-item a:hover {
+  background-color: #BFBFBF;
+  color: #000000;
+
+}
+
+.show {
+  display: block;
+}
+
+
+a:link {
+  color: #FFFFFF;
+}
+
+a:visited {
+  color: #FFFFFF;
+}
+
+a:hover {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+a:active {
+  color: white;
+}
+
+.content {
+  min-height: 960px;
+  margin: 0 40px;
+  padding: 20px 40px;
+}
+
+.infoCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  justify-content: center;
+}
+
+.infoCard {
+  background: hsla(168, 100%, 95%, 0.3);
+  border-left: 4px solid #007dcb;
+  padding: 24px;
+  margin: 24px;
+  border-radius: 8px;
+  width: 35%;
+  min-width: 250px;
+}
+
+.infoCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.images {
+  height: 250px;
+}
+
+.imageHolder {
+  margin:10px
+}
+
+
+@media (max-width: 600px) {
+  .images {
+    max-width: 300px;
+    height: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .menu-item a {
+    padding: 5px 10px;
+    
+  }
+}
+
+@media (min-width: 450px) {
+  .infoCard {
+    min-width: 300px;
+  }
+}
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+}
+@media (max-width: 450px) {
+  .navbar {
+    font-size: 8px;
+  }
+  #socName {
+    font-size: 20px;
+  }
+  #socLogo{
+    width: 3rem;
+  }
+}
+.infoCard h1,
+.infoCard h2,
+.infoCard h3,
+.infoCard h4,
+.infoCard h5,
+.infoCard h6,
+.infoCard p {
+  margin: 10px;
+}
