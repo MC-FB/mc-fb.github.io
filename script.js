@@ -117,11 +117,11 @@ function showNotification(message) {
     notification.style.position = 'fixed';
     notification.style.top = '20px';
     notification.style.right = '20px';
-    notification.style.background = 'linear-gradient(135deg, #8B5A2B, #CD853F)';
-    notification.style.color = '#FFF8DC';
+    notification.style.background = 'linear-gradient(135deg, var(--secondary-color), var(--tertiary-color))';
+    notification.style.color = 'var(--light-text)';
     notification.style.padding = '1rem 2rem';
     notification.style.borderRadius = '50px';
-    notification.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+    notification.style.boxShadow = '0 5px 15px rgba(0, 212, 255, 0.3)';
     notification.style.zIndex = '9999';
     notification.style.opacity = '0';
     notification.style.transform = 'translateY(-20px)';
@@ -198,15 +198,15 @@ backToTopBtn.className = 'back-to-top';
 backToTopBtn.style.position = 'fixed';
 backToTopBtn.style.bottom = '30px';
 backToTopBtn.style.right = '30px';
-backToTopBtn.style.background = 'linear-gradient(135deg, #8B5A2B, #CD853F)';
-backToTopBtn.style.color = '#FFF8DC';
+backToTopBtn.style.background = 'linear-gradient(135deg, var(--secondary-color), var(--tertiary-color))';
+backToTopBtn.style.color = 'var(--light-text)';
 backToTopBtn.style.border = 'none';
 backToTopBtn.style.borderRadius = '50%';
 backToTopBtn.style.width = '50px';
 backToTopBtn.style.height = '50px';
 backToTopBtn.style.fontSize = '1.5rem';
 backToTopBtn.style.cursor = 'pointer';
-backToTopBtn.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+backToTopBtn.style.boxShadow = '0 5px 15px rgba(0, 212, 255, 0.3)';
 backToTopBtn.style.opacity = '0';
 backToTopBtn.style.transition = 'opacity 0.3s ease';
 backToTopBtn.style.zIndex = '1000';
@@ -218,6 +218,16 @@ window.addEventListener('scroll', function() {
         backToTopBtn.style.opacity = '1';
     } else {
         backToTopBtn.style.opacity = '0';
+    }
+    
+    // Add header scroll effect
+    const header = document.querySelector('.header');
+    if (header) {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
     }
 });
 
@@ -244,3 +254,25 @@ function initResponsiveNav() {
 // Initialize responsive navigation
 initResponsiveNav();
 window.addEventListener('resize', initResponsiveNav);
+
+// Add CSS-in-JS for dynamic elements that need CSS variables
+const style = document.createElement('style');
+style.textContent = `
+    .notification {
+        background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color)) !important;
+        color: var(--light-text) !important;
+        box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3) !important;
+    }
+    
+    .back-to-top {
+        background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color)) !important;
+        color: var(--light-text) !important;
+        box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3) !important;
+    }
+    
+    .back-to-top:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4) !important;
+    }
+`;
+document.head.appendChild(style);
