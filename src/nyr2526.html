@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+  ========================================
+  HOW TO USE THIS FILE:
+  ========================================
+  
+  1. Create an 'images' folder in the same directory as this HTML file
+  2. Add your photos to that folder (JPG, PNG formats work best)
+  3. Scroll down to the JavaScript section (search for "EDIT YOUR IMAGES HERE!")
+  4. Update the imageUrls array with your image file names
+  
+  IMAGE TIPS:
+  - Recommended size: 160px wide x 120px tall (or similar aspect ratio)
+  - Supported formats: .jpg, .jpeg, .png, .gif, .webp
+  - You can add as many or as few images as you want
+  - The animation will work with 5+ images (25 is default)
+  
+  SHAPES:
+  - Tree: Classic Christmas tree formation
+  - 2026: Forms the year 2026
+  - Star: Five-pointed star shape
+  - Float: Random floating animation
+  
+  ========================================
+  -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Year 2025-2026 Animation</title>
+
+  <style>
+    :root {
+      --primary-color: #ff3366;
+      --secondary-color: #00d2ff;
+      --bg-color: #1a1a1a;
+      --text-color: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      position: absolute;
+      top: 20px;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      text-align: center;
+      z-index: 100;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      animation: titleGlow 3s infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+
+      to {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+      }
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 30px;
+      z-index: 100;
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      background: transparent;
+      border: 2px solid var(--secondary-color);
+      color: var(--secondary-color);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 30px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: var(--secondary-color);
+      color: var(--bg-color);
+      box-shadow: 0 0 15px var(--secondary-color);
+    }
+
+    .btn.active {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: white;
+      box-shadow: 0 0 20px var(--primary-color);
+    }
+
+    /* Animation container */
+    .animation-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Individual image strips */
+    .image-strip {
+      position: absolute;
+      width: 160px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      opacity: 0.9;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      transform-origin: center;
+      transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform, opacity;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Tree shape positions */
+    .tree-shape .image-strip {
+      opacity: 0;
+    }
+
+    .tree-shape .tree1-trunk {
+      opacity: 1;
+      transform: translate(0px, -150px) rotate(0deg);
+    }
+
+    .tree-shape .tree1-branch-1 {
+      opacity: 1;
+      transform: translate(-80px, -80px) rotate(0deg);
+    }
+
+    .tree-shape .tree1-branch-2 {
+      opacity: 1;
+      transform: translate(80px, -80px) rotate(0deg);
+    }
+
+    .tree-shape .tree1-branch-3 {
+      opacity: 1;
+      transform: translate(-120px, -10px) rotate(0deg);
+    }
+
+    .tree-shape .tree1-branch-4 {
+      opacity: 1;
+      transform: translate(120px, -10px) rotate(0deg);
+    }
+
+    .tree-shape .tree1-branch-5 {
+      opacity: 1;
+      transform: translate(-140px, 60px) rotate(0deg);
+    }
+
+    .tree-shape .tree1-branch-6 {
+      opacity: 1;
+      transform: translate(140px, 60px) rotate(0deg);
+    }
+
+    .tree-shape .tree1-top {
+      opacity: 1;
+      transform: translate(0px, 130px) rotate(0deg);
+    }
+
+    .tree-shape .tree2-trunk {
+      opacity: 1;
+      transform: translate(-520px, -150px) rotate(0deg);
+    }
+
+    .tree-shape .tree2-branch-1 {
+      opacity: 1;
+      transform: translate(-600px, -80px) rotate(0deg);
+    }
+
+    .tree-shape .tree2-branch-2 {
+      opacity: 1;
+      transform: translate(-440px, -80px) rotate(0deg);
+    }
+
+    .tree-shape .tree2-branch-3 {
+      opacity: 1;
+      transform: translate(-640px, -10px) rotate(0deg);
+    }
+
+    .tree-shape .tree2-branch-4 {
+      opacity: 1;
+      transform: translate(-400px, -10px) rotate(0deg);
+    }
+
+    .tree-shape .tree2-branch-5 {
+      opacity: 1;
+      transform: translate(-660px, 60px) rotate(0deg);
+    }
+
+    .tree-shape .tree2-branch-6 {
+      opacity: 1;
+      transform: translate(-380px, 60px) rotate(0deg);
+    }
+
+    .tree-shape .tree2-top {
+      opacity: 1;
+      transform: translate(-520px, 130px) rotate(0deg);
+    }
+
+    .tree-shape .tree3-trunk {
+      opacity: 1;
+      transform: translate(520px, -150px) rotate(0deg);
+    }
+
+    .tree-shape .tree3-branch-1 {
+      opacity: 1;
+      transform: translate(440px, -80px) rotate(0deg);
+    }
+
+    .tree-shape .tree3-branch-2 {
+      opacity: 1;
+      transform: translate(600px, -80px) rotate(0deg);
+    }
+
+    .tree-shape .tree3-branch-3 {
+      opacity: 1;
+      transform: translate(400px, -10px) rotate(0deg);
+    }
+
+    .tree-shape .tree3-branch-4 {
+      opacity: 1;
+      transform: translate(640px, -10px) rotate(0deg);
+    }
+
+    .tree-shape .tree3-branch-5 {
+      opacity: 1;
+      transform: translate(380px, 60px) rotate(0deg);
+    }
+
+    .tree-shape .tree3-branch-6 {
+      opacity: 1;
+      transform: translate(660px, 60px) rotate(0deg);
+    }
+
+    .tree-shape .tree3-top {
+      opacity: 1;
+      transform: translate(520px, 130px) rotate(0deg);
+    }
+
+    /* 2026 shape positions */
+    .year-2026-shape .image-strip {
+      opacity: 0;
+    }
+
+
+
+    /* '2' formation */
+    .year-2026-shape .digit-2-1 {
+      opacity: 1;
+      transform: translate(-520px, -160px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-2-2 {
+      opacity: 1;
+      transform: translate(-360px, -160px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-2-3 {
+      opacity: 1;
+      transform: translate(-200px, -160px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-2-4 {
+      opacity: 1;
+      transform: translate(-200px, -40px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-2-5 {
+      opacity: 1;
+      transform: translate(-360px, 20px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-2-6 {
+      opacity: 1;
+      transform: translate(-520px, 80px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-2-7 {
+      opacity: 1;
+      transform: translate(-520px, 200px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-2-8 {
+      opacity: 1;
+      transform: translate(-360px, 200px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-2-9 {
+      opacity: 1;
+      transform: translate(-200px, 200px) rotate(0deg);
+    }
+
+    /* '6' formation */
+    .year-2026-shape .digit-6-1 {
+      opacity: 1;
+      transform: translate(200px, -160px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-6-2 {
+      opacity: 1;
+      transform: translate(360px, -160px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-6-3 {
+      opacity: 1;
+      transform: translate(520px, -160px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-6-4 {
+      opacity: 1;
+      transform: translate(200px, -40px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-6-5 {
+      opacity: 1;
+      transform: translate(200px, 80px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-6-6 {
+      opacity: 1;
+      transform: translate(200px, 200px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-6-7 {
+      opacity: 1;
+      transform: translate(360px, 200px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-6-8 {
+      opacity: 1;
+      transform: translate(520px, 200px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-6-9 {
+      opacity: 1;
+      transform: translate(520px, 80px) rotate(0deg);
+    }
+
+    .year-2026-shape .digit-6-10 {
+      opacity: 1;
+      transform: translate(360px, 20px) rotate(0deg);
+    }
+
+    /* Star shape positions */
+    .star-shape .image-strip {
+      opacity: 0;
+    }
+
+    .star-shape .star-point-1 {
+      opacity: 1;
+      transform: translate(0px, -200px) rotate(0deg);
+    }
+
+    .star-shape .star-point-2 {
+      opacity: 1;
+      transform: translate(220px, -70px) rotate(0deg);
+    }
+
+    .star-shape .star-point-3 {
+      opacity: 1;
+      transform: translate(160px, 190px) rotate(0deg);
+    }
+
+    .star-shape .star-point-4 {
+      opacity: 1;
+      transform: translate(-160px, 190px) rotate(0deg);
+    }
+
+    .star-shape .star-point-5 {
+      opacity: 1;
+      transform: translate(-220px, -70px) rotate(0deg);
+    }
+
+    .star-shape .star-center-1 {
+      opacity: 1;
+      transform: translate(0px, -100px) rotate(0deg);
+    }
+
+    .star-shape .star-center-2 {
+      opacity: 1;
+      transform: translate(90px, -40px) rotate(0deg);
+    }
+
+    .star-shape .star-center-3 {
+      opacity: 1;
+      transform: translate(-90px, -40px) rotate(0deg);
+    }
+
+    .star-shape .star-center-4 {
+      opacity: 1;
+      transform: translate(80px, 90px) rotate(0deg);
+    }
+
+    .star-shape .star-center-5 {
+      opacity: 1;
+      transform: translate(-80px, 90px) rotate(0deg);
+    }
+
+    /* Floating animation for idle state */
+    .idle-shape .image-strip {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(5deg);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .image-strip {
+        width: 80px;
+        height: 15px;
+      }
+
+      .controls {
+        bottom: 20px;
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>New Year 2025-2026</h1>
+
+    <div class="animation-container" id="animationContainer">
+      <!-- Image strips will be generated by JavaScript -->
+    </div>
+
+    <div class="controls">
+      <button class="btn active" onclick="switchShape('tree', this)">Tree</button>
+      <button class="btn" onclick="switchShape('year', this)">2026</button>
+      <button class="btn" onclick="switchShape('star', this)">Star</button>
+      <button class="btn" onclick="switchShape('idle', this)">Float</button>
+    </div>
+  </div>
+
+  <script>
+    // Configuration
+    const config = {
+      stripCount: 25,
+      colors: ['#ff3366', '#00d2ff', '#ffcc00', '#66ff66', '#cc33ff'],
+      currentShape: 'idle'
+    };
+
+    // DOM elements
+    const container = document.getElementById('animationContainer');
+    let strips = [];
+
+    // Initialize animation
+    function init() {
+      createStrips();
+      positionStripsRandomly();
+      startFloatingAnimation();
+      switchShape('tree', document.getElementsByClassName('active')[0]); // Default to tree shape
+    }
+
+    // ========================================
+    // EDIT YOUR IMAGES HERE!
+    // ========================================
+    // Add your image file names in the 'images' folder
+    // Example: './images/photo1.jpg', './images/photo2.jpg'
+    // The paths are relative to where this HTML file is located
+    const imageUrls = [
+      './images/photo1.jpg',
+      './images/photo2.jpg',
+      './images/photo3.jpg',
+      './images/photo4.jpg',
+      './images/photo5.jpg',
+      './images/photo6.jpg',
+      './images/photo7.jpg',
+      './images/photo8.jpg',
+      './images/photo9.jpg',
+      './images/photo10.jpg',
+      './images/photo11.jpg',
+      './images/photo12.jpg',
+      './images/photo13.jpg',
+      './images/photo14.jpg',
+      './images/photo15.jpg',
+      './images/photo16.jpg',
+      './images/photo17.jpg',
+      './images/photo18.jpg',
+      './images/photo19.jpg',
+      './images/photo20.jpg',
+      './images/photo21.jpg',
+      './images/photo22.jpg',
+      './images/photo23.jpg',
+      './images/photo24.jpg',
+      './images/photo25.jpg'
+    ];
+    // ========================================
+
+    // Position mapping for different shapes
+    const positionClasses = {
+      tree: ['tree1-trunk', 'tree1-branch-1', 'tree1-branch-2', 'tree1-branch-3', 'tree1-branch-4', 'tree1-branch-5', 'tree1-branch-6', 'tree1-top', 'tree2-trunk', 'tree2-branch-1', 'tree2-branch-2', 'tree2-branch-3', 'tree2-branch-4', 'tree2-branch-5', 'tree2-branch-6', 'tree2-top', 'tree3-trunk', 'tree3-branch-1', 'tree3-branch-2', 'tree3-branch-3', 'tree3-branch-4', 'tree3-branch-5', 'tree3-branch-6', 'tree3-top'],
+      year: ['digit-2-1', 'digit-2-2', 'digit-2-3', 'digit-2-4', 'digit-2-5', 'digit-2-6', 'digit-2-7', 'digit-2-8', 'digit-2-9', 'digit-6-1', 'digit-6-2', 'digit-6-3', 'digit-6-4', 'digit-6-5', 'digit-6-6', 'digit-6-7', 'digit-6-8', 'digit-6-9', 'digit-6-10'],
+      star: ['star-point-1', 'star-point-2', 'star-point-3', 'star-point-4', 'star-point-5', 'star-center-1', 'star-center-2', 'star-center-3', 'star-center-4', 'star-center-5']
+    };
+
+    // Create image strips
+    function createStrips() {
+      for (let i = 0; i < config.stripCount; i++) {
+        const strip = document.createElement('img');
+        strip.className = 'image-strip';
+
+        // Assign position classes for ALL shapes to each strip
+        if (i < positionClasses.tree.length) {
+          strip.classList.add(positionClasses.tree[i]);
+        }
+        if (i < positionClasses.year.length) {
+          strip.classList.add(positionClasses.year[i]);
+        }
+        if (i < positionClasses.star.length) {
+          strip.classList.add(positionClasses.star[i]);
+        }
+
+        strip.src = imageUrls[i] || imageUrls[0]; // Fallback to first image if not enough images
+        strip.alt = `Animated image ${i + 1}`;
+        strip.loading = 'lazy';
+        strip.onerror = function () {
+          // Fallback if image doesn't exist
+          this.style.backgroundColor = '#666';
+          this.style.display = 'flex';
+          this.style.alignItems = 'center';
+          this.style.justifyContent = 'center';
+        };
+        container.appendChild(strip);
+        strips.push(strip);
+      }
+    }
+
+    // Get random color
+    function getRandomColor() {
+      return config.colors[Math.floor(Math.random() * config.colors.length)];
+    }
+
+    // Position strips randomly for idle state
+    function positionStripsRandomly() {
+      strips.forEach((strip, index) => {
+        const x = (Math.random() - 0.5) * 400;
+        const y = (Math.random() - 0.5) * 300;
+        const rotation = Math.random() * 360;
+
+        strip.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+        strip.style.opacity = '0.6';
+      });
+    }
+
+    // Start floating animation
+    function startFloatingAnimation() {
+      container.className = 'animation-container idle-shape';
+    }
+
+    // Switch between shapes
+    function switchShape(shape, btn) {
+      config.currentShape = shape;
+
+      // Update button states safely without relying on global 'event'
+      document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      // Clear inline transforms/opacity set during idle/random states,
+      // so CSS transforms for shapes can take effect
+      strips.forEach(s => {
+        s.style.transform = '';
+        s.style.opacity = '';
+      });
+
+      // Remove all shape classes from container
+      container.classList.remove('tree-shape', 'year-2026-shape', 'star-shape', 'idle-shape');
+
+      // Add new shape class
+      if (shape === 'tree') {
+        container.className = 'animation-container tree-shape';
+      } else if (shape === 'year') {
+        container.className = 'animation-container year-2026-shape';
+      } else if (shape === 'star') {
+        container.className = 'animation-container star-shape';
+      } else {
+        container.className = 'animation-container idle-shape';
+        positionStripsRandomly();
+      }
+    }
+
+    // Add some interactive effects
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX - window.innerWidth / 2) / 20;
+      const y = (e.clientY - window.innerHeight / 2) / 20;
+
+      if (config.currentShape === 'idle') {
+        strips.forEach((strip, index) => {
+          const delay = index * 0.05;
+          strip.style.transform = `translate(${x + (Math.random() - 0.5) * 20}px, ${y + (Math.random() - 0.5) * 20}px) rotate(${Math.random() * 360}deg)`;
+        });
+      }
+    });
+
+    // Initialize on load
+    window.onload = init;
+  </script>
+</body>
+
+</html>
