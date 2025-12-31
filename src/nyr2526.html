@@ -598,9 +598,9 @@
     // Position strips randomly for idle state
     function positionStripsRandomly() {
       strips.forEach((strip, index) => {
-        const x = (Math.random() - 0.5) * 400;
-        const y = (Math.random() - 0.5) * 300;
-        const rotation = Math.random() * 360;
+        const x = (Math.random() - 0.5) * 800;
+        const y = (Math.random() - 0.5) * 600;
+        const rotation = 0;
 
         strip.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
         strip.style.opacity = '0.6';
@@ -641,6 +641,11 @@
       } else {
         container.className = 'animation-container idle-shape';
         positionStripsRandomly();
+        
+        javascript:var script = document.createElement("script"); 
+        script.src="http://gravityscript.googlecode.com/svn/trunk/gravityscript.js"; 
+        document.body.appendChild(script);
+        void(0);
       }
     }
 
